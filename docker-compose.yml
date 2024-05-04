@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  proxy:
+    image: nginx:1.25.5-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+    depends_on:
+      - frontend
+      - backend
+  frontend:
+    image: node:20.12.2-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    environment:
+      TZ: Asia/Tokyo
+    command: >
+      sh -c "
+        npm i &&
+        npm run dev -- --host 0.0.0.0
+      "
+  backend:
+    build:
+      context: ./backend
+    working_dir: /go/src/app
+    volumes:
+      - ./backend:/go/src/app
+    environment:
+      TZ: Asia/Tokyo
+  tbls:
+    image: k1low/tbls
+    working_dir: /work
+    volumes:
+      - ./:/work
+    environment:
+      TZ: Asia/Tokyo
+    command: doc --force
+#  db:
+#    image: postgres:13-alpine
+#    environment:
+#      POSTGRES_USER: user
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_DB: database
+#      TZ: Asia/Tokyo
+#    volumes:
+#      - ./data:/var/lib/postgresql/data

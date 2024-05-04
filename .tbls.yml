@@ -1,0 +1,13 @@
+# dsn: postgres://user:password@db:5432/database?sslmode=disable
+dsn: sqlite://./backend/data.db
+docPath: docs/dbschema
+disableOutputSchema: true
+er:
+  format: mermaid
+  hideDef: true
+
+lint:
+  requireTableComment:
+    enabled: true
+  requireColumnComment:
+    enabled: true

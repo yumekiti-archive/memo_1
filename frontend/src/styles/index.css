@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind typography;
+
+:root {
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Zen Maru Gothic', serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-style: normal;
+
+  color-scheme: light dark;
+  color: #094067;
+  background-color: #fffffe;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-y: scroll;
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3da9fc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #d8eefe;
+}
